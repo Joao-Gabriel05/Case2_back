@@ -1,4 +1,4 @@
-from repositories.task_repository import PlanRepository
+from repositories.plan_respository import PlanRepository
 from .create_plan_dto import CreatePlanDTO
 from .create_plan_use_case import CreatePlanUseCase
 from fastapi import Request, Response, APIRouter

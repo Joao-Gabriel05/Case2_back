@@ -1,13 +1,9 @@
-import dotenv
 from pydantic import BaseModel
-from typing import Literal, Optional, List
-dotenv.load_dotenv()
+from typing import Literal, Optional,List
 
-class Plan(BaseModel):
+class EditPlanDTO(BaseModel):
     _id: str
     type: Literal["fibra","5G","4G"]
     speed : str
     details : List[str]
-    price: float
-
-
+    price : float

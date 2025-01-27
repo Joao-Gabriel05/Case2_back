@@ -6,3 +6,4 @@ class CreatePlanDTO(BaseModel):
     type: Literal["fibra","5G","4G"]
     speed : str
     details : List[str]
+    price : float

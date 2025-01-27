@@ -16,7 +16,8 @@ class PlanModel(Document):
 
     type = StringField(required=True, choices=["fibra", "5G", "4G"])
     speed = StringField(required=True)
-    details = ListField(StringField(), required=True) 
+    details = ListField(StringField(), required=True)
+    price = FloatField(required=True) 
 
 
     
@@ -24,5 +25,5 @@ class PlanModel(Document):
 
 
     def get_normal_fields():
-        return [i for i in TaskModel.__dict__.keys() if i[:1] != '_' and i != "sensivity_fields" and i not in TaskModel.sensivity_fields]
+        return [i for i in PlanModel.__dict__.keys() if i[:1] != '_' and i != "sensivity_fields" and i not in PlanModel.sensivity_fields]
     
