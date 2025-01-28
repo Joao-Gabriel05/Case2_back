@@ -9,8 +9,8 @@ class GetPromotionUseCase:
 
         promotions = self. promotion_repository.get_all_promotions()
         if not promotions:
-            response.status_code = 204
-            return {"status": "success", "message": "Nenhuma promoção encontrada"}
+            response.status_code = 404
+            return {"message": "Nenhuma promoção encontrada"}
         
         response.status_code = 200
         return promotions

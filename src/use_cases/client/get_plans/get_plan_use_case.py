@@ -9,8 +9,8 @@ class GetPlanUseCase:
 
         plans = self. plan_repository.get_all_plans()
         if not plans:
-            response.status_code = 204
-            return {"status": "success", "message": "Nenhum plano encontrada"}
+            response.status_code = 404
+            return {"message": "Nenhum plano encontrada"}
         
         response.status_code = 200
         return plans

@@ -22,7 +22,8 @@ class CreatePlanUseCase:
             type=create_plan_dto.type,
             speed=create_plan_dto.speed,
             details=create_plan_dto.details,
-            price = create_plan_dto.price
+            price = create_plan_dto.price,
+            public = create_plan_dto.public
         )
 
         # Salvar o plano no repositório
