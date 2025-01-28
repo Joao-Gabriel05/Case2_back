@@ -1,6 +1,5 @@
 from repositories.plan_respository import PlanRepository
 from fastapi import Request, Response
-from entities.task import Task
 
 class GetPlanUseCase:
     def __init__(self, plan_repository: PlanRepository):

@@ -1,0 +1,86 @@
+import os
+import bcrypt
+from typing import List
+from mongoengine import *
+from cryptography.fernet import Fernet
+from entities.client import Client
+from models.client_model import ClientsModel
+from models.fields.sensivity_field import SensivityField
+
+class ClientsRepository:
+    fernet = Fernet(os.getenv("FERNET_SECRET_KEY"))
+
+    # Salva um novo cliente no banco de dados
+    def save(self, client: Client) -> None:
+        client_model = ClientsModel()
+        client_dict = client.model_dump()
+
+        for k in ClientsModel.get_normal_fields():
+            if k not in client_dict:
+                continue
+
+            client_model[k] = client_dict[k]
+
+        for k in ClientsModel.sensivity_fields:
+            client_model[k] = SensivityField(fernet=self.fernet, data=client_dict[k])
+
+        client_model.password = bcrypt.hashpw(f"{client.password}".encode(), bcrypt.gensalt()).decode()
+
+        client_model.save()
+
+        return None
+
+    # Busca clientes pelo cpf
+    def find_by_cpf(self, cpf: int) -> List[ClientsModel]:
+        result = ClientsModel.objects(cpf=cpf)
+        return result
+
+    # Busca clientes pelo ID
+    def find_by_id(self, id: str) -> List[ClientsModel]:
+        result = ClientsModel.objects(id=id)
+        return result
+
+    # Atualiza o token de redefinição de senha
+    def update_reset_pwd_token(self, email: str, sent_at: int, token: str) -> None:
+        ClientsModel.objects(email=email).update(set__reset_pwd_token_sent_at=sent_at, set__reset_pwd_token=token)
+
+        return None
+
+    # Busca cliente pelo token de redefinição de senha
+    def find_by_reset_pwd_token(self, token: str) -> List[ClientsModel]:
+        result = ClientsModel.objects(reset_pwd_token=token)
+        return result
+
+    # Atualiza a senha de um cliente
+    def update_pwd(self, id: str, pwd: str) -> None:
+        ClientsModel.objects(id=id).update(set__password=bcrypt.hashpw(pwd.encode(), bcrypt.gensalt()).decode())
+
+        return None
+
+    # Retorna o nome de um cliente pelo ID
+    def get_name(self, id: str) -> str:
+        client = ClientsModel.objects(id=id).first()
+        if client:
+            return client.name
+
+    # Retorna o e-mail de um cliente pelo ID
+    def get_email(self, id: str) -> str:
+        client = ClientsModel.objects(id=id).first()
+        if client:
+            return client.email
+
+    # Atualiza o nome de um cliente pelo ID
+    def update_name(self, id: str, name: str) -> None:
+        ClientsModel.objects(id=id).update(set__name=name)
+        return None
+
+    # Atualiza o e-mail de um cliente pelo ID
+    def update_email(self, id: str, email: str) -> None:
+        ClientsModel.objects(id=id).update(set__email=email)
+        return None
+
+    # Atualização dinâmica: Recebe chave-valor e aplica a atualização
+    def update_fields(self, id: str, updates: dict) -> None:
+        update_query = {f"set__{key}": value for key, value in updates.items()}
+        ClientsModel.objects(id=id).update(**update_query)
+        return None
