@@ -12,7 +12,8 @@ class CreatePlanUseCase:
         if (not create_plan_dto.type or 
             not create_plan_dto.speed or 
             not create_plan_dto.details or
-            not create_plan_dto.price):
+            not create_plan_dto.price or
+            not create_plan_dto.public):
             response.status_code = 407
             return {"status": "error", "message": "faltam informações"}
 

@@ -7,3 +7,4 @@ class EditPlanDTO(BaseModel):
     speed : str
     details : List[str]
     price : float
+    public: Literal["B2B","B2C"]

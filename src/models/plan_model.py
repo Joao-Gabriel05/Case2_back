@@ -18,6 +18,7 @@ class PlanModel(Document):
     speed = StringField(required=True)
     details = ListField(StringField(), required=True)
     price = FloatField(required=True) 
+    public = StringField(required=True, choices=["B2B", "B2C"])
 
 
     
