@@ -12,11 +12,11 @@ class LoginUseCase:
         self.client_repository = client_repository
 
     def execute(self, login_dto: LoginDTO, response: Response, request: Request):
-        check_exists = self.client_repository.find_by_cpf(cpf=login_dto.cpf)
+        check_exists = self.client_repository.find_by_email(email=login_dto.email)
 
         if (len(check_exists) == 0):
             response.status_code = 404
-            return {"status": "error", "message": "Não foi possível achar um cliente com o cpf fornecido"}
+            return {"status": "error", "message": "Não foi possível achar um cliente com o email fornecido"}
 
         cliente = check_exists[0]
 
@@ -24,7 +24,7 @@ class LoginUseCase:
             response.status_code = 400
             return {"status": "error", "message": "Senha incorreta, tente novamente mais tarde."}
 
-        token = jwt.encode({"cpf": cliente.cpf, "id": str(cliente.id)}, os.getenv("CLIENT_JWT_SECRET"))
+        token = jwt.encode({"email": cliente.email, "id": str(cliente.id)}, os.getenv("CLIENT_JWT_SECRET"))
 
         response.set_cookie(key="client_auth_token", value=f"Bearer {token}", httponly=True)
         

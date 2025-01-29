@@ -26,7 +26,6 @@ class ClientsModel(Document):
     password = StringField(required=True)
    # Tornando 'services' e 'invoices' opcionais, com valor padrão de lista vazia
     services = ListField(StringField(), required=False, default=[])
-    invoices = ListField(StringField(), required=False, default=[])
 
     reset_pwd_token = StringField(default="")
     reset_pwd_token_sent_at = IntField(default=0)

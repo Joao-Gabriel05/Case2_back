@@ -30,9 +30,9 @@ class ClientsRepository:
 
         return None
 
-    # Busca clientes pelo cpf
-    def find_by_cpf(self, cpf: int) -> List[ClientsModel]:
-        result = ClientsModel.objects(cpf=cpf)
+    # Busca clientes pelo email
+    def find_by_email(self, email: str) -> List[ClientsModel]:
+        result = ClientsModel.objects(email=email)
         return result
 
     # Busca clientes pelo ID

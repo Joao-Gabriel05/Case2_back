@@ -17,4 +17,4 @@ class RegisterDTO(BaseModel):
     street_number: int
     password: str
     services: Optional[List[str]] = []  # Se não fornecido, será uma lista vazia
-    invoices: Optional[List[str]] = []  # Se não fornecido, será uma lista vazia
+

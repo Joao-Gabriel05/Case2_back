@@ -6,5 +6,5 @@ from typing import Literal, Optional, List
 dotenv.load_dotenv()
 
 class LoginDTO(BaseModel):
-    cpf : int
+    email : str
     password: str

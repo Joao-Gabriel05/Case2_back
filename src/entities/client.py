@@ -17,7 +17,6 @@ class Client(BaseModel):
     street_number: int
     password: str
     services:List[str]
-    invoices: List[str]
 
     reset_pwd_token: str = ""
     reset_pwd_token_sent_at: int = 0
