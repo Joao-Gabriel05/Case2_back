@@ -24,8 +24,9 @@ class ClientsModel(Document):
     CEP = StringField(required=True)
     street_number = IntField(required=True)
     password = StringField(required=True)
-    plans = ListField(StringField(), required=True)
-    invoices = ListField(StringField(), required=True)
+   # Tornando 'services' e 'invoices' opcionais, com valor padrão de lista vazia
+    services = ListField(StringField(), required=False, default=[])
+    invoices = ListField(StringField(), required=False, default=[])
 
     reset_pwd_token = StringField(default="")
     reset_pwd_token_sent_at = IntField(default=0)

@@ -10,11 +10,11 @@ class RegisterDTO(BaseModel):
     name: str
     email: str
     phone: str
-    birth_date: date 
-    cpf : int
+    birth_date: date
+    cpf: int
     city: str
     CEP: str
     street_number: int
     password: str
-    plans: List[str]
-    invoices: List[str]
+    services: Optional[List[str]] = []  # Se não fornecido, será uma lista vazia
+    invoices: Optional[List[str]] = []  # Se não fornecido, será uma lista vazia

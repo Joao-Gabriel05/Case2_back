@@ -16,7 +16,7 @@ class Client(BaseModel):
     CEP: str
     street_number: int
     password: str
-    plans:List[str]
+    services:List[str]
     invoices: List[str]
 
     reset_pwd_token: str = ""
