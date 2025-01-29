@@ -68,6 +68,37 @@ class ClientsRepository:
         client = ClientsModel.objects(id=id).first()
         if client:
             return client.email
+    
+        # Retorna o telefone de um cliente pelo ID
+    def get_phone(self, id: str) -> str:
+        client = ClientsModel.objects(id=id).first()
+        if client:
+            return client.phone
+
+    # Retorna a cidade de um cliente pelo ID
+    def get_city(self, id: str) -> str:
+        client = ClientsModel.objects(id=id).first()
+        if client:
+            return client.city
+
+    # Retorna o CEP de um cliente pelo ID
+    def get_cep(self, id: str) -> str:
+        client = ClientsModel.objects(id=id).first()
+        if client:
+            return client.cep
+
+    # Retorna o número da rua de um cliente pelo ID
+    def get_street_number(self, id: str) -> int:
+        client = ClientsModel.objects(id=id).first()
+        if client:
+            return client.street_number
+        
+    # Retorna o número da rua de um cliente pelo ID
+    def get_cart(self, id: str) -> int:
+        client = ClientsModel.objects(id=id).first()
+        if client:
+            return client.cart
+
 
     # Atualiza o nome de um cliente pelo ID
     def update_name(self, id: str, name: str) -> None:
@@ -98,4 +129,10 @@ class ClientsRepository:
     def update_street_number(self, id: str, street_number: int) -> None:
         ClientsModel.objects(id=id).update(set__street_number=street_number)
         return None
+    
+        # Atualiza o nome de um cliente pelo ID
+    def update_cart(self, id: str, cart: str) -> None:
+        ClientsModel.objects(id=id).update(set__cart=cart)
+        return None
+
 

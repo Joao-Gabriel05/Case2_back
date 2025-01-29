@@ -27,6 +27,7 @@ class ClientsModel(Document):
     
     # Tornando 'services' opcional, com valor padrão como uma lista vazia, mas pode ser null
     services = ListField(StringField(), required=False, default=[])  # Aqui 'None' pode ser um valor nulo
+    cart = ListField(StringField(), required=False, default=[])  # Aqui 'None' pode ser um valor nulo
 
 
 

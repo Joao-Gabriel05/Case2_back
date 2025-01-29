@@ -16,3 +16,4 @@ class RegisterDTO(BaseModel):
     street_number: str # O campo é opcional
     password: str
     services: Optional[List[str]] = []  # O campo é opcional, com valor padrão sendo uma lista vazia
+    cart: Optional[List[str]] = []  # O campo é opcional, com valor padrão sendo uma lista vazia

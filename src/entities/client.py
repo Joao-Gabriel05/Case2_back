@@ -17,6 +17,7 @@ class Client(BaseModel):
     street_number: str
     password: str
     services: Optional[List[str]] = [] 
+    cart : Optional[List[str]] = [] 
 
     reset_pwd_token: str = ""
     reset_pwd_token_sent_at: int = 0

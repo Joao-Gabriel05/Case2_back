@@ -9,4 +9,5 @@ class UpdateClientDTO(BaseModel):
     phone: str 
     city:str
     cep: str
-    street_number:int
+    street_number:str
+    cart:List[str]
