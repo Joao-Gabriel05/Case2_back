@@ -8,5 +8,6 @@ class CreatePromotionDTO(BaseModel):
     description: str
     plan: List[str]
     price: float
+    old_price:float 
 
 

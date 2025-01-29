@@ -15,7 +15,8 @@ class PromotionModel(Document):
     ]
     description = StringField(required=True) 
     plan = ListField(StringField(), required=True)
-    price = FloatField(required=True) 
+    price = FloatField(required=True)
+    old_price = FloatField(required=True)
 
 
     

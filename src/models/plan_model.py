@@ -14,12 +14,12 @@ class PlanModel(Document):
         
     ]
 
-    type = StringField(required=True, choices=["fibra", "5G", "4G"])
+    type = StringField(required=True, choices=["Telfonia Fixa","Banda","movel-5G","movel-4G"])
     speed = StringField(required=True)
     details = ListField(StringField(), required=True)
     price = FloatField(required=True) 
     public = StringField(required=True, choices=["B2B", "B2C"])
-
+    products = ListField(StringField(), required=False, default=[])  # Aqui 'None' pode ser um valor nulo
 
     
 

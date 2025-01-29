@@ -78,9 +78,24 @@ class ClientsRepository:
     def update_email(self, id: str, email: str) -> None:
         ClientsModel.objects(id=id).update(set__email=email)
         return None
-
-    # Atualização dinâmica: Recebe chave-valor e aplica a atualização
-    def update_fields(self, id: str, updates: dict) -> None:
-        update_query = {f"set__{key}": value for key, value in updates.items()}
-        ClientsModel.objects(id=id).update(**update_query)
+    
+    # Atualiza o número de telefone de um cliente pelo ID
+    def update_phone(self, id: str, phone: str) -> None:
+        ClientsModel.objects(id=id).update(set__phone=phone)
         return None
+
+    # Atualiza a cidade de um cliente pelo ID
+    def update_city(self, id: str, city: str) -> None:
+        ClientsModel.objects(id=id).update(set__city=city)
+        return None
+
+    # Atualiza o CEP de um cliente pelo ID
+    def update_cep(self, id: str, cep: str) -> None:
+        ClientsModel.objects(id=id).update(set__cep=cep)
+        return None
+
+    # Atualiza o número da rua de um cliente pelo ID
+    def update_street_number(self, id: str, street_number: int) -> None:
+        ClientsModel.objects(id=id).update(set__street_number=street_number)
+        return None
+

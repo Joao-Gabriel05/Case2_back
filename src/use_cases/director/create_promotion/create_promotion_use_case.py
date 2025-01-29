@@ -11,7 +11,8 @@ class CreatePromotionUseCase:
         # Verificar se todos os campos obrigatórios foram preenchidos
         if (not create_promotion_dto.description or 
             not create_promotion_dto.plan or 
-            not create_promotion_dto.price):
+            not create_promotion_dto.price or
+            not create_promotion_dto.old_price):
             response.status_code = 407
             return {"status": "error", "message": "Faltam informações"}
 
@@ -19,7 +20,8 @@ class CreatePromotionUseCase:
         promotion = Promotion(
             description=create_promotion_dto.description,
             plan=create_promotion_dto.plan,
-            price=create_promotion_dto.price
+            price=create_promotion_dto.price,
+            old_price = create_promotion_dto.old_price
         )
 
         # Salvar a promoção no repositório
