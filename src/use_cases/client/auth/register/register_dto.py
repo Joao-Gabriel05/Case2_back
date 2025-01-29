@@ -1,6 +1,5 @@
 import dotenv
 from pydantic import BaseModel, ConfigDict
-from datetime import date  # Para trabalhar com o tipo date
 from typing import Literal, Optional, List
 
 dotenv.load_dotenv()
@@ -9,12 +8,11 @@ class RegisterDTO(BaseModel):
     model_config = ConfigDict(extra="forbid")
     name: str
     email: str
-    phone: str
-    birth_date: date
-    cpf: int
-    city: str
-    CEP: str
-    street_number: int
+    phone: str# O campo é opcional
+    birth_date: str  # O campo é opcional
+    cpf: str  # O campo é opcional
+    city: str# O campo é opcional
+    cep: str  # O campo é opcional
+    street_number: str # O campo é opcional
     password: str
-    services: Optional[List[str]] = []  # Se não fornecido, será uma lista vazia
-
+    services: Optional[List[str]] = []  # O campo é opcional, com valor padrão sendo uma lista vazia

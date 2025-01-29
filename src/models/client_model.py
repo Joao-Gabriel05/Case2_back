@@ -5,6 +5,7 @@ import bcrypt
 from cryptography.fernet import Fernet
 import datetime
 
+from mongoengine import Document, StringField, DateField, IntField, ListField
 dotenv.load_dotenv()
 fernet = Fernet(os.getenv("FERNET_SECRET_KEY"))
 
@@ -13,19 +14,21 @@ class ClientsModel(Document):
     sensivity_fields = [
 
     ]
-
     # Campos do modelo
     name = StringField(required=True)
     email = StringField(required=True, unique=True)
-    phone = StringField(required=True)
-    birth_date = DateField(required=True)
-    cpf = IntField(required=True, unique=True)
-    city = StringField(required=True)
-    CEP = StringField(required=True)
-    street_number = IntField(required=True)
+    phone = StringField(required=True)  # Torna o campo opcional e com valor padrão null
+    birth_date = StringField(required=True)  # Torna o campo opcional e com valor padrão null
+    cpf = StringField(required=True, unique=True)  # Torna o campo opcional e com valor padrão null
+    city = StringField(required=True)  # Torna o campo opcional e com valor padrão null
+    cep = StringField(required=True)  # Torna o campo opcional e com valor padrão null
+    street_number = StringField(required=True)  # Torna o campo opcional e com valor padrão null
     password = StringField(required=True)
-   # Tornando 'services' e 'invoices' opcionais, com valor padrão de lista vazia
-    services = ListField(StringField(), required=False, default=[])
+    
+    # Tornando 'services' opcional, com valor padrão como uma lista vazia, mas pode ser null
+    services = ListField(StringField(), required=False, default=[])  # Aqui 'None' pode ser um valor nulo
+
+
 
     reset_pwd_token = StringField(default="")
     reset_pwd_token_sent_at = IntField(default=0)

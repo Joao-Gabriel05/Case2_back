@@ -10,7 +10,7 @@ class RegisterUseCase:
         self.director_repository = director_repository
 
     def execute(self, register_dto: RegisterDTO, response: Response, request: Request):
-        if not register_dto.name or not register_dto.email or not register_dto.password:
+        if not register_dto.name or not register_dto.email or not register_dto.cpf  or not register_dto.password:
             response.status_code = 406
             return{"status": "error", "message": "Cadastro não realizado, pois falta informações"}
 

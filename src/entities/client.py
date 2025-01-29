@@ -9,14 +9,14 @@ class Client(BaseModel):
     _id: str
     name: str
     email: str
-    phone: str
-    birth_date: date  # Definindo birth_date como uma data
-    cpf : int
+    phone: str  
+    birth_date: str
+    cpf: str 
     city: str
-    CEP: str
-    street_number: int
+    cep: str
+    street_number: str
     password: str
-    services:List[str]
+    services: Optional[List[str]] = [] 
 
     reset_pwd_token: str = ""
     reset_pwd_token_sent_at: int = 0

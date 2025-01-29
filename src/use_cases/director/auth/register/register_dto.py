@@ -5,4 +5,5 @@ class RegisterDTO(BaseModel):
 
     name: str
     email: str
+    cpf: str 
     password: str
