@@ -9,6 +9,6 @@ class Contract(BaseModel):
     plan: str 
     client: str
     start_date: date
-    used: Optional[str] = None
+    used: Optional[str] = "0 GB"
 
 
