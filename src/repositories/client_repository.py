@@ -141,4 +141,8 @@ class ClientsRepository:
         ClientsModel.objects(id=id).update(set__cart=cart)
         return None
 
+           # Atualiza o nome de um cliente pelo ID
+    def update_services(self, id: str, services: str) -> None:
+        ClientsModel.objects(id=id).update(set__services=services)
+        return None
 

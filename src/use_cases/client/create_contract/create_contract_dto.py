@@ -6,7 +6,6 @@ dotenv.load_dotenv()
 
 class CreateContractDTO(BaseModel):
     plan: str 
-    client: str
     start_date: date
     used: Optional[str] = "0 GB"
 

@@ -15,7 +15,6 @@ class ContractModel(Document):
     ]
 
     plan = StringField(required=True)
-    client = StringField(required=True)
     start_date = DateField(required=True)
     used = StringField(required=False,default = "0 GB")
 
