@@ -12,7 +12,7 @@ class CreatePromotionUseCase:
         if (not create_promotion_dto.description or 
             not create_promotion_dto.plan or 
             not create_promotion_dto.price or
-            not create_promotion_dto.old_price):
+            not create_promotion_dto.discount):
             response.status_code = 407
             return {"status": "error", "message": "Faltam informações"}
 
@@ -21,7 +21,7 @@ class CreatePromotionUseCase:
             description=create_promotion_dto.description,
             plan=create_promotion_dto.plan,
             price=create_promotion_dto.price,
-            old_price = create_promotion_dto.old_price
+            discount = create_promotion_dto.discount
         )
 
         # Salvar a promoção no repositório
