@@ -8,5 +8,6 @@ class CreateContractDTO(BaseModel):
     plan: str 
     client: str
     start_date: date
+    used: Optional[str] = None
 
 

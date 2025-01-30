@@ -17,7 +17,8 @@ class CreateContractUseCase:
         contract = ContractEntity(
             plan=create_contract_dto.plan,
             client=create_contract_dto.client,
-            start_date=create_contract_dto.start_date
+            start_date=create_contract_dto.start_date,
+            used = create_contract_dto.used
         )
 
         # Salvar o contrato no repositório

@@ -92,7 +92,13 @@ class ClientsRepository:
         client = ClientsModel.objects(id=id).first()
         if client:
             return client.street_number
-        
+    
+        # Retorna o número da rua de um cliente pelo ID
+    def get_services(self, id: str) -> int:
+        client = ClientsModel.objects(id=id).first()
+        if client:
+            return client.services
+
     # Retorna o número da rua de um cliente pelo ID
     def get_cart(self, id: str) -> int:
         client = ClientsModel.objects(id=id).first()
