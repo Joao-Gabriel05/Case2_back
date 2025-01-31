@@ -2,12 +2,13 @@ from repositories.client_repository import ClientsRepository
 from fastapi import Request, Response
 import jwt
 import os
+from use_cases.client.update_client_compra.update_client_compra_dto import UpdateClientByDTO  # Seu DTO
 
-class GetClientCartUseCase:
+class EditCartUseCase:
     def __init__(self, client_repository: ClientsRepository):
         self.client_repository = client_repository
 
-    def execute(self, response: Response, request: Request):
+    def execute(self, update_client_dto: UpdateClientByDTO, response: Response, request: Request):
         token = request.cookies.get("client_auth_token")
         try:
             # Verifica o token JWT
@@ -23,22 +24,22 @@ class GetClientCartUseCase:
             return {"status": "error", "message": "Usuário não encontrado"}
 
         try:
-            # Busca o cart do cliente
-            client_cart = self.client_repository.get_cart(client_id)
-            
-            if client_cart is None:
-                response.status_code = 404
-                return {"status": "error", "message": "Carrinho não encontrado"}
-            
-            # Retorna o cart do cliente junto com o client_id
+            # Converte o DTO para um dicionário
+            update_data = update_client_dto.dict()
+            # Atualiza os campos individualmente se eles estiverem presentes no DTO
+            if 'cart' in update_data:
+                self.client_repository.update_cart(client_id, update_data['cart'])
+                 
+
             response.status_code = 200
-            return {
-                "status": "success",
-                "cart": client_cart,
-                "client_id": client_id  # Incluindo o client_id na resposta
-            }
+            return {"status": "success", "message": "Cliente atualizado com sucesso"}
+
+        except ValueError as e:
+            # Caso não encontre o cliente ou haja algum erro com os dados
+            response.status_code = 404
+            return {"status": "error", "message": str(e)}
 
         except Exception as e:
             # Caso ocorra algum erro inesperado
             response.status_code = 500
-            return {"status": "error", "message": "Erro ao obter os dados do carrinho"}
+            return {"status": "error", "message": "Erro ao atualizar os dados do cliente"}

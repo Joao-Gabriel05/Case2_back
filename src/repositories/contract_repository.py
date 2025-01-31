@@ -63,3 +63,15 @@ class ContractRepository:
             return False
         contract.delete()
         return True
+
+    def get_contracts_by_user_id(self, client_id: str) -> List[dict]:
+        # Buscando contratos onde o campo 'user' é igual ao 'user_id' fornecido
+        contracts = ContractModel.objects(client=client_id)
+        result = []
+
+        for contract in contracts:
+            contract_dict = contract.to_mongo().to_dict()
+            contract_dict['_id'] = str(contract_dict['_id'])  # Convertendo o ObjectId para string
+            result.append(contract_dict)
+
+        return result

@@ -7,6 +7,7 @@ dotenv.load_dotenv()
 class Contract(BaseModel):
     _id: str
     plan: str 
+    client: str
     start_date: date
     used: Optional[str] = "0 GB"
 

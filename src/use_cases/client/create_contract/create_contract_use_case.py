@@ -9,13 +9,14 @@ class CreateContractUseCase:
 
     def execute(self, create_contract_dto: CreateContractDTO, response: Response, request: Request):
         # Verificar se todos os campos obrigatórios foram preenchidos
-        if not create_contract_dto.plan or not create_contract_dto.start_date:
+        if not create_contract_dto.plan or not create_contract_dto.client or not create_contract_dto.start_date:
             response.status_code = 407
             return {"status": "error", "message": "faltam informações"}
 
         # Criar a instância do contrato
         contract = ContractEntity(
             plan=create_contract_dto.plan,
+            client = create_contract_dto.client,
             start_date=create_contract_dto.start_date,
             used = create_contract_dto.used
         )
