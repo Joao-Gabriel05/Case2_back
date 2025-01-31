@@ -2,7 +2,8 @@ from pydantic import BaseModel
 from typing import Literal, Optional,List
 
 class CreatePlanDTO(BaseModel):
-    type: Literal["Telfonia Fixa","Banda","movel-5G","movel-4G"]
+    title : str
+    type: Literal["Telefonia Fixa","Banda Larga","movel-5G","movel-4G"]
     speed : str
     details : List[str]
     price : float

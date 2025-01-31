@@ -9,7 +9,8 @@ class CreatePlanUseCase:
 
     def execute(self, create_plan_dto: CreatePlanDTO, response: Response, request: Request):
         # Verificar se todos os campos obrigatórios foram preenchidos
-        if (not create_plan_dto.type or 
+        if (not create_plan_dto.title or 
+            not create_plan_dto.type or 
             not create_plan_dto.speed or 
             not create_plan_dto.details or
             not create_plan_dto.price or
@@ -19,6 +20,7 @@ class CreatePlanUseCase:
 
         # Criar a instância do plano
         plan = Plan(
+            title = create_plan_dto.title,
             type=create_plan_dto.type,
             speed=create_plan_dto.speed,
             details=create_plan_dto.details,

@@ -13,8 +13,8 @@ class PlanModel(Document):
     sensivity_fields = [
         
     ]
-
-    type = StringField(required=True, choices=["Telfonia Fixa","Banda","movel-5G","movel-4G"])
+    title = StringField(required=True)
+    type = StringField(required=True, choices=["Telefonia Fixa","Banda Larga","movel-5G","movel-4G"])
     speed = StringField(required=True)
     details = ListField(StringField(), required=True)
     price = FloatField(required=True) 

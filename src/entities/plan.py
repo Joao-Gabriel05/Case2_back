@@ -5,7 +5,8 @@ dotenv.load_dotenv()
 
 class Plan(BaseModel):
     _id: str
-    type: Literal["Telfonia Fixa","Banda","movel-5G","movel-4G"]
+    title: str
+    type: Literal["Telefonia Fixa","Banda Larga","movel-5G","movel-4G"]
     speed : str
     details : List[str]
     price: float
